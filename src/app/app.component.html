@@ -1,4 +1,8 @@
 <ul *ngFor="let character of characters">
-  <li>{{ character.id }} : {{ character.name }}</li>
+  <li>
+    {{ character.id }} : {{ character.name }}
+    <br>
+    <img src="{{ character.image }}" />
+  </li>
 </ul>
 <router-outlet></router-outlet>
