@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CharacterService } from './services/character.service';
+import { CharacterService } from './services/character/character.service';
 import { Character } from './models/character.model';
 
 @Component({
@@ -8,15 +8,4 @@ import { Character } from './models/character.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public characters: Character[] = [];
-
-  constructor(private characterService: CharacterService){}
-
-  ngOnInit(): void{
-    this.characterService.getCharacters(1).subscribe(
-      (data: any) => {
-        this.characters = data.results;
-      }
-    );
-  }
 }

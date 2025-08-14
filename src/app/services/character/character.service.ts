@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Character } from '../models/character.model';
+import { Character } from '../../models/character.model';
 import { Observable } from 'rxjs';
 
 const CHARACTER_ENDPOINT = "https://rickandmortyapi.com/api/character/?page="
