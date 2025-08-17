@@ -27,4 +27,19 @@ export class UserService {
   getUserById(id: number): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}/${id}`);
   }
+
+  getUserByEmail(email: string){
+    this.getAllUsers().subscribe({
+      next: (users) => {
+
+      },
+      error: (err) => {
+        window.alert('Um erro aconteceu quando')
+      } 
+    });
+  }
+
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.apiUrl);
+  }
 }

@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
+import { AlertService } from 'src/app/services/alert/alert.service';
 import { SessaoService } from 'src/app/services/sessao/sessao.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-login',
@@ -14,8 +16,10 @@ export class LoginComponent implements OnInit {
   public loginForm!: FormGroup;
 
   constructor(
-    private router: Router,
     private sessaoService: SessaoService,
+    private userService: UserService,
+    private alertService: AlertService,
+    private router: Router,
     private formBuilder: FormBuilder
   ){}
 
