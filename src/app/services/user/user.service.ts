@@ -5,37 +5,59 @@ import { environment } from 'src/app/environments/environment';
 import { User } from 'src/app/models/user.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
   private apiUrl = environment.apiEndpoint;
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) {}
 
-  postUser(user: User): Observable<User | null>{
-    return this.http.post<User>(this.apiUrl, user);
+  postUser(user: User): Observable<User | null> {
+    return this.http.post<User>(this.apiUrl, user).pipe(
+      catchError((error) => {
+        console.error('Erro na requisição POST:', error);
+        return of(null);
+      })
+    );
   }
 
-  login(user: User): Observable<User | null>{
+  putUser(user: User): Observable<User | null> {
+    return this.http.put<User>(`${this.apiUrl}/${user.id}`, user).pipe(
+      catchError((error) => {
+        console.error('Erro na requisição PUT:', error);
+        return of(null);
+      })
+    );
+  }
+
+  login(user: User): Observable<User | null> {
     return this.http.get<User[]>(this.apiUrl).pipe(
-      map(users => users.find((item) => item.email === user.email && item.senha === user.senha) || null),
-      catchError(err => {
+      map(
+        (users) =>
+          users.find(
+            (item) => item.email === user.email && item.senha === user.senha
+          ) || null
+      ),
+      catchError((err) => {
         console.error('Erro ao buscar usuários:', err);
         return of(null);
       })
     );
   }
 
-  getUserById(id: number): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl}/${id}`);
+  getUserById(id: number): Observable<User | null> {
+    return this.http.get<User>(`${this.apiUrl}/${id}`).pipe(
+      catchError((error) => {
+        console.error('Erro na requisição GET:', error);
+        return of(null);
+      })
+    );
   }
 
   getUserByEmail(email: string): Observable<User | null> {
     return this.getAllUsers().pipe(
-      map(users => users.find(user => user.email === email) || null),
-      catchError(err => {
+      map((users) => users.find((user) => user.email === email) || null),
+      catchError((err) => {
         console.error('Erro ao buscar usuários:', err);
         return of(null);
       })
@@ -43,6 +65,11 @@ export class UserService {
   }
 
   getAllUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.apiUrl);
+    return this.http.get<User[]>(this.apiUrl).pipe(
+      catchError((error) => {
+        console.error('Erro na requisição GET:', error);
+        return of([]);
+      })
+    );
   }
 }

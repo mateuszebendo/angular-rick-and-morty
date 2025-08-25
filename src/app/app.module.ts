@@ -14,7 +14,7 @@ import { AlertComponent } from './components/alert/alert.component';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    AlertComponent
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
