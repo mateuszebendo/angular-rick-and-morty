@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/app/environments/environment';
 import { User } from 'src/app/models/user.model';
@@ -9,12 +10,14 @@ import { User } from 'src/app/models/user.model';
 export class SessaoService {
   private sessao = new BehaviorSubject<User | null>(null);
 
-  constructor() {
+  constructor(
+    private router: Router
+  ) {
     this.restaurarSessao();
   }
 
   restaurarSessao(){
-    const jsonSessao = sessionStorage.getItem(environment.sessionKeyword);
+    const jsonSessao = localStorage.getItem(environment.sessionKeyword);
 
     if(!jsonSessao){
       return;
@@ -34,7 +37,7 @@ export class SessaoService {
   }
 
   limparSessao(): void {
-    sessionStorage.clear();
+    localStorage.clear();
     this.sessao.next(null);
   }
 

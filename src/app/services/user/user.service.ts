@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map, catchError, of } from 'rxjs';
 import { environment } from 'src/app/environments/environment';
 import { User } from 'src/app/models/user.model';
 
@@ -10,33 +10,36 @@ import { User } from 'src/app/models/user.model';
 export class UserService {
   private apiUrl = environment.apiEndpoint;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
-  postUser(user: User): void{
-    this.http.post(this.apiUrl, user)
-      .subscribe(
-        resultado => {
-          console.log(resultado);
-        }, 
-        erro => {
-          console.log(erro);
-        }
-      );
+  postUser(user: User): Observable<User | null>{
+    return this.http.post<User>(this.apiUrl, user);
+  }
+
+  login(user: User): Observable<User | null>{
+    return this.http.get<User[]>(this.apiUrl).pipe(
+      map(users => users.find((item) => item.email === user.email && item.senha === user.senha) || null),
+      catchError(err => {
+        console.error('Erro ao buscar usuários:', err);
+        return of(null);
+      })
+    );
   }
 
   getUserById(id: number): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}/${id}`);
   }
 
-  getUserByEmail(email: string){
-    this.getAllUsers().subscribe({
-      next: (users) => {
-
-      },
-      error: (err) => {
-        window.alert('Um erro aconteceu quando')
-      } 
-    });
+  getUserByEmail(email: string): Observable<User | null> {
+    return this.getAllUsers().pipe(
+      map(users => users.find(user => user.email === email) || null),
+      catchError(err => {
+        console.error('Erro ao buscar usuários:', err);
+        return of(null);
+      })
+    );
   }
 
   getAllUsers(): Observable<User[]> {
