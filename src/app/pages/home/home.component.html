@@ -1,7 +1,42 @@
-<ul *ngFor="let character of characters">
-  <li>
-    {{ character.id }} : {{ character.name }}
-    <br>
-    <img src="{{ character.image }}" />
-  </li>
-</ul>
+<main>
+  <div class="container my-5">
+    <h2 class="text-center my-5">Personagens Populares</h2>
+    <hr class="mb-4" />
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <div class="col" *ngFor="let character of characters">
+        <div class="card h-100 shadow-sm border-0">
+          <img
+            [src]="character.image"
+            class="card-img-top"
+            alt="{{ character.name }}"
+          />
+          <div class="card-body text-center">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <h5 class="card-title mb-0">{{ character.name }}</h5>
+              <i
+                class="bi bi-heart fs-5 text-danger"
+                role="button"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Favoritar"
+              ></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center align-items-center mb-5">
+    <button
+      type="button"
+      class="btn btn-secondary me-2"
+      [class.disabled]="currentPage == 1"
+      [disabled]="currentPage == 1"
+      (click)="previousPage()"
+    >
+      Página anterior
+    </button>
+    <button type="button" class="btn btn-primary ms-2" (click)="nextPage()">Próxima página</button>
+  </div>
+</main>
