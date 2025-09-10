@@ -1,27 +1,65 @@
-# AngularRickAndMorty
+# Rick and Morty App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.11.
+Este projeto é uma aplicação web construída com Angular para explorar os fundamentos do framework. Ele simula uma plataforma onde usuários podem se cadastrar, fazer login e navegar por uma lista paginada de personagens da série "Rick and Morty", com a funcionalidade de favoritar seus personagens preferidos.
 
-## Development server
+O principal objetivo do projeto foi solidificar os conhecimentos básicos do Angular e de conceitos de desenvolvimento front-end moderno.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 💻 Tecnologias Utilizadas
 
-## Code scaffolding
+O projeto foi desenvolvido com as seguintes tecnologias:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Front-end Framework:** Angular v15.2.0
+- **Linguagem:** TypeScript v4.9.4
+- **Gerenciador de Pacotes:** npm
+- **Estilização:** Bootstrap v5.3.3 e Bootstrap Icons
+- **Programação Assíncrona:** RxJS v7.8.0
 
-## Build
+## ✨ Funcionalidades
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+O projeto abrange uma variedade de conceitos essenciais do Angular, incluindo:
 
-## Running unit tests
+- **Autenticação e Roteamento:** Telas de login e cadastro com um sistema de autenticação simples.
+- **Validação de Formulários:** Uso de Reactive Forms e validadores personalizados para garantir a integridade dos dados de usuário.
+- **Guards de Roteamento:** Proteção de rotas privadas para que apenas usuários autenticados possam acessar a página principal.
+- **Comunicação com APIs:** Consumo de APIs externas para obter dados de usuários e personagens.
+  - **Autenticação:** [MockAPI](https://mockapi.io/)
+  - **Dados dos Personagens:** [The Rick and Morty API](https://rickandmortyapi.com/)
+- **Gerenciamento de Estado:** Uso de Services e Observables (RxJS) para gerenciar o estado do usuário (sessão) e o estado da aplicação (favoritos e alertas).
+- **Estrutura da Aplicação:** Criação e organização de componentes, serviços, e modelos (models).
+- **UI/UX:** Implementação de uma interface moderna e responsiva com Bootstrap e Bootstrap Icons, incluindo um layout de carrossel e paginação para a lista de personagens.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 🚀 Como Rodar o Projeto
 
-## Running end-to-end tests
+Siga os passos abaixo para ter uma cópia do projeto em sua máquina local para desenvolvimento e testes.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Pré-requisitos
 
-## Further help
+Certifique-se de que você tem o **Node.js** (versão 18.x ou superior) e o **Angular CLI** instalados globalmente.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- Instale o Node.js em: [https://nodejs.org/](https://nodejs.org/)
+- Após instalar o Node.js, instale o Angular CLI globalmente com o comando abaixo:
+  ```bash
+  npm install -g @angular/cli
+  ```
+
+### Instalação e Execução
+
+1. Clone o repositório:
+```bash
+git clone [https://github.com/mateuszebendo/angular-rick-and-morty.git](https://github.com/mateuszebendo/angular-rick-and-morty.git)
+```
+
+2. Acesse o diretório do projeto:
+```bash
+cd angular-rick-and-morty
+```
+
+3. Instale as dependências:
+```bash
+npm install
+```
+
+4.Inicie o servidor de desenvolvimento:
+```bash
+ng serve    
+```
