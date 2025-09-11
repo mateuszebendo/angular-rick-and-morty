@@ -1,4 +1,4 @@
 export const environment = {
-    apiEndpoint: "https://689d4ff8ce755fe69788506b.mockapi.io/users",
+    apiEndpoint: "https://68c2cd02f9928dbf33efcd29.mockapi.io/users",
     sessionKeyword: "auth"
 } 
